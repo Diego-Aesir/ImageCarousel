@@ -57,8 +57,14 @@ function carousel() {
   }
 }
 
-function setImageWithTransition(imageIndex, foward) {
+function setImageWithTransition(imageIndex) {
   slide = false;
+  if (imageIndex >= photos.length) {
+    imageIndex = 0;
+  } else if (imageIndex < 0) {
+    imageIndex = 4;
+  }
+  index = imageIndex;
   carouselDiv.style.opacity = "0";
   setTimeout(() => {
     setImageOnCarousel(imageIndex);
@@ -67,12 +73,6 @@ function setImageWithTransition(imageIndex, foward) {
 }
 
 function setImageOnCarousel(imageIndex) {
-  if (imageIndex === photos.length) {
-    imageIndex = 0;
-  } else if (imageIndex < 0) {
-    imageIndex = 4;
-  }
-  index = imageIndex;
   carouselDiv.removeChild(carouselDiv.lastChild);
   carouselDiv.appendChild(photos[imageIndex]);
 
